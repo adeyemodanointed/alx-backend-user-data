@@ -9,20 +9,17 @@ class Auth:
     def __init__(self):
         pass
 
-
     def require_auth(
-            self, 
-            path: str, 
+            self,
+            path: str,
             excluded_paths: List[str]) -> bool:
         """Check paths that require auth"""
         return False
-
 
     def authorization_header(self, request=None) -> str:
         """Authorization header method"""
         self.request = request
         return None
-
 
     def current_user(self, request=None) -> TypeVar('User'):
         """Checks for current user"""
