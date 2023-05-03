@@ -1,18 +1,13 @@
-#!/usr/bin/python3
-""" Check response
+#!/usr/bin/env python3
+""" Main 3
 """
+from api.v1.auth.basic_auth import BasicAuth
 
-if __name__ == "__main__":
-    from api.v1.auth.basic_auth import BasicAuth
+a = BasicAuth()
 
-    ba = BasicAuth()
-    res = ba.extract_base64_authorization_header("Basic HBTN")
-    if res is None:
-        print("extract_base64_authorization_header must return the decoded value of 'authorization_header'")
-        exit(1)
-    
-    if res != "HBTN":
-        print("extract_base64_authorization_header must return the decoded value of 'authorization_header': {}".format(res))
-        exit(1)
-    
-    print("OK", end="")
+print(a.decode_base64_authorization_header(None))
+print(a.decode_base64_authorization_header(89))
+print(a.decode_base64_authorization_header("Holberton School"))
+print(a.decode_base64_authorization_header("SG9sYmVydG9u"))
+print(a.decode_base64_authorization_header("SG9sYmVydG9uIFNjaG9vbA=="))
+print(a.decode_base64_authorization_header(a.extract_base64_authorization_header("Basic SG9sYmVydG9uIFNjaG9vbA==")))
