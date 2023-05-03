@@ -20,4 +20,4 @@ class BasicAuth(Auth):
         if (authorization_header.startswith('Basic ') is False):
             return None
         else:
-            authorization_header[6:]
+            return authorization_header[6:]
