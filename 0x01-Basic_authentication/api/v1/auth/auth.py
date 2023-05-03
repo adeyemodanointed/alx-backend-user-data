@@ -7,6 +7,7 @@ from typing import List, TypeVar
 class Auth:
     """Auth Class"""
     def __init__(self):
+        """Initialization"""
         pass
 
     def require_auth(
