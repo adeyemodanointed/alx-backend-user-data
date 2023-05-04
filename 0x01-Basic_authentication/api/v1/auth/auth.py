@@ -28,7 +28,7 @@ class Auth:
         """Authorization header method"""
         if (request is None):
             return None
-        if (request.headers['authorization'] is None):
+        if (request.headers.get('authorization')is None):
             return None
         return request.headers['authorization']
 
