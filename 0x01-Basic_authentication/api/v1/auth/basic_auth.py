@@ -80,4 +80,4 @@ class BasicAuth(Auth):
         decoded_hdr = self.decode_base64_authorization_header(
             ext_header)
         credential = self.extract_user_credentials(decoded_hdr)
-        return self.user_object_from_credentials(credential[0], credential[0])
+        return self.user_object_from_credentials(credential[0], credential[1])
