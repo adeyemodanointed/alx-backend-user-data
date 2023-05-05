@@ -50,7 +50,7 @@ class BasicAuth(Auth):
         if (data.find(":") == -1):
             return None, None
         data_list = data.split(":")
-        return data_list[0], data_list[1]
+        return data_list[0], ":".join(data_list[1:])
 
     def user_object_from_credentials(
             self,
