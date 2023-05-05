@@ -24,7 +24,7 @@ class Auth:
                 or path+"/" in excluded_paths):
             return False
         for a_path in excluded_paths:
-            if re.search(a_path, path):
+            if re.search(a_path.replace("*", "+"), path):
                 return False
         return True
 
