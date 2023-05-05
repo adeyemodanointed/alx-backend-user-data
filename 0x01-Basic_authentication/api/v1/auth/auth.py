@@ -2,6 +2,7 @@
 """Auth class"""
 from flask import request
 from typing import List, TypeVar
+import re
 
 
 class Auth:
@@ -22,13 +23,16 @@ class Auth:
         if (path in excluded_paths
                 or path+"/" in excluded_paths):
             return False
+        for a_path in excluded_paths:
+            if re.search(a_path, path):
+                return False
         return True
 
     def authorization_header(self, request=None) -> str:
         """Authorization header method"""
         if (request is None):
             return None
-        if (request.headers.get('authorization')is None):
+        if (request.headers.get('authorization') is None):
             return None
         return request.headers['authorization']
 
