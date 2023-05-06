@@ -19,7 +19,7 @@ class SessionAuth(Auth):
             return None
 
         new_key = uuid.uuid4()
-        self.user_id_by_session_id[new_key] = user_id
+        self.user_id_by_session_id[str(new_key)] = user_id
         return new_key
 
     def user_id_for_session_id(self, session_id: str = None) -> str:
