@@ -40,3 +40,7 @@ class Auth:
         """Checks for current user"""
         self.request = request
         return None
+
+    def session_cookie(self, request=None):
+        """Returns a cookie value for the request"""
+
