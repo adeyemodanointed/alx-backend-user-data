@@ -44,3 +44,4 @@ class DB:
         as filtered by the method’s input arguments.
         """
         self._session.query
+        return
