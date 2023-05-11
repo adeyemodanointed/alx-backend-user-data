@@ -50,4 +50,14 @@ class DB:
             return user
         except AttributeError:
             raise InvalidRequestError
-        return
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """Update user details"""
+        user = self.find_user_by(id=user_id)
+        if user is None:
+            return
+        for key, value in kwargs.items():
+            if not hasattr(User, key):
+                raise ValueError
+            setattr(user, key, value)
+        self._session.commit()
