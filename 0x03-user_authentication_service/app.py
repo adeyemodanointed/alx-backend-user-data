@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """App Entry point"""
 import flask
-from flask import Flask, request, make_response, abort
+from flask import Flask, request, make_response, abort, url_for
 from auth import Auth
 
 
@@ -57,7 +57,7 @@ def logout():
         abort(403)
     else:
         AUTH.destroy_session(user.id)
-        flask.redirect('/')
+        flask.redirect(url_for('hello'))
 
 
 if __name__ == "__main__":
