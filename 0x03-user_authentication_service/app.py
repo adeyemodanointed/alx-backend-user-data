@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """App Entry point"""
 import flask
-from flask import Flask, request
+from flask import Flask, request, make_response, abort
 from auth import Auth
 
 
@@ -27,6 +27,25 @@ def register_user():
     except ValueError:
         return flask.jsonify(
                 {"message": "email already registered"}), 400
+
+
+@app.route('/sessions', methods=['POST'], strict_slashes=False)
+def login():
+    """Login function"""
+    email = request.form.get('email')
+    password = request.form.get('password')
+    try:
+        if AUTH.valid_login(email, password):
+            session_id = AUTH.create_session(email)
+            if session_id is not None:
+                resp = flask.jsonify(
+                        {"email": "".format(email), "message": "logged in"})
+                resp.set_cookie('session_id', session_id)
+                return resp
+        else:
+            abort(401)
+    except Exception:
+        abort(401)
 
 
 if __name__ == "__main__":
