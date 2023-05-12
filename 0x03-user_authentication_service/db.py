@@ -57,7 +57,7 @@ class DB:
         if user is None:
             return
         for key, value in kwargs.items():
-            if not hasattr(User, key):
+            if not hasattr(user, key):
                 raise ValueError
             setattr(user, key, value)
         self._session.commit()
