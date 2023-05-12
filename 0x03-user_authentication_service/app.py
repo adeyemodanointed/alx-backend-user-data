@@ -78,7 +78,7 @@ def get_reset_password_token():
     try:
         token = AUTH.get_reset_password_token(email)
         return flask.jsonify(
-                {"email": f"email", "reset_token": f"token"})
+                {"email": f"{email}", "reset_token": f"{token}"})
     except ValueError:
         abort(403)
 
