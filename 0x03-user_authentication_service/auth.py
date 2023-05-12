@@ -93,13 +93,14 @@ class Auth:
         """Updates user password with token"""
         try:
             user = self._db.find_user_by(reset_token=reset_token)
+            hashed_password = _hash_password(password).decode('utf-8')
             if user is not None:
                 self._db.update_user(
                         user.id,
-                        hashed_password=_hash_password(password).decode('utf-8'),
+                        hashed_password=hashed_password,
                         reset_token=None)
-                return
+                return None
             else:
                 raise ValueError
-        except Exception:
+        except NoResultFound:
             raise ValueError
